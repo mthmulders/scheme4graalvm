@@ -218,7 +218,7 @@
 
                                     <!-- enforces the Maven version -->
                                     <requireMavenVersion>
-                                        <version>3.6.0</version>
+                                        <version>3.5.0</version>
                                     </requireMavenVersion>
                                 </rules>
                             </configuration>
