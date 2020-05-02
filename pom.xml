@@ -17,6 +17,8 @@
         <graal.sdk.version>19.1.0</graal.sdk.version>
         <junit.version>5.5.1</junit.version>
         <mockito.version>2.25.1</mockito.version>
+
+        <argLine></argLine>
     </properties>
 
     <name>Scheme 4 GraalVM</name>
@@ -93,6 +95,50 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.8.5</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.22.2</version>
+                    <configuration>
+                        <argLine>@{argLine} -Dgraalvm.locatorDisabled=true -XX:-UseJVMCIClassLoader</argLine>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>2.22.2</version>
+                    <configuration>
+                        <argLine>@{argLine} -Dgraalvm.locatorDisabled=true -XX:-UseJVMCIClassLoader</argLine>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>integration-test</goal>
+                                <goal>verify</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>3.1.2</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
     <profiles>
         <profile>
