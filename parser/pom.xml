@@ -88,7 +88,6 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>2.22.2</version>
                 <configuration>
-                    <argLine>-Dgraalvm.locatorDisabled=true</argLine>
                     <includes>
                         <include>*IT</include>
                     </includes>
