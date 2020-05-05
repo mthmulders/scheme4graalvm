@@ -25,14 +25,14 @@ class DebugSchemeListener implements SchemeListener {
 
     @Override
     public void enterArguments(final SchemeParser.ArgumentsContext ctx) {
-        log.debug("{}enterArgumentList {}", indent(), ctx.getText());
+        log.debug("{}enterArguments {}", indent(), ctx.getText());
         indentCount++;
     }
 
     @Override
     public void exitArguments(final SchemeParser.ArgumentsContext ctx) {
         indentCount--;
-        log.debug("{}exitArgumentList {}", indent(), ctx.getText());
+        log.debug("{}exitArguments {}", indent(), ctx.getText());
     }
 
     @Override
