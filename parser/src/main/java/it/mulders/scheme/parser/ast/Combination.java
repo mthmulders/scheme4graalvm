@@ -13,7 +13,7 @@ import static java.util.stream.Collectors.joining;
 @EqualsAndHashCode
 @Getter
 public class Combination implements SchemeExpression {
-    private final String operand;
+    private final Operand operand;
 
     @Singular
     private final List<Argument> arguments;

@@ -1,7 +1,7 @@
 package it.mulders.scheme.parser.visitors;
 
-import it.mulders.scheme.parser.ast.Argument;
 import it.mulders.scheme.parser.ast.Combination;
+import it.mulders.scheme.parser.ast.Operand;
 import it.mulders.scheme.parser.generated.SchemeBaseVisitor;
 import it.mulders.scheme.parser.generated.SchemeParser;
 import it.mulders.scheme.parser.generated.SchemeVisitor;
@@ -16,7 +16,8 @@ public class CombinationVisitor extends SchemeBaseVisitor<Combination.Combinatio
 
     @Override
     public Combination.CombinationBuilder visitOperand(SchemeParser.OperandContext ctx) {
-        return builder.operand(ctx.getText());
+        var operand = Operand.forSymbol(ctx.getText());
+        return builder.operand(operand);
     }
 
     @Override

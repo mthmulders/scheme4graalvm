@@ -10,6 +10,10 @@ import it.mulders.scheme.parser.visitors.SchemeExpressionsVisitor;
 import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.junit.jupiter.api.Test;
 
+import static it.mulders.scheme.parser.ast.Operand.ADD;
+import static it.mulders.scheme.parser.ast.Operand.DEFINE;
+import static it.mulders.scheme.parser.ast.Operand.MULTIPLY;
+import static it.mulders.scheme.parser.ast.Operand.SUBTRACT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ParserFacadeIT {
@@ -44,7 +48,7 @@ class ParserFacadeIT {
 
         // Assert
         var expected = Combination.builder()
-                .operand("*")
+                .operand(MULTIPLY)
                 .argument(Argument.fromNumber(5))
                 .argument(Argument.fromNumber(99))
                 .build();
@@ -58,7 +62,7 @@ class ParserFacadeIT {
 
         // Assert
         var expected = Combination.builder()
-                .operand("+")
+                .operand(ADD)
                 .argument(Argument.fromNumber(21))
                 .argument(Argument.fromNumber(35))
                 .argument(Argument.fromNumber(12))
@@ -68,13 +72,14 @@ class ParserFacadeIT {
     }
 
     @Test
+    // TODO Is this a combination, or a different construct?
     void should_parse_combination() {
         // Arrange & act
         var expressions = sut.parse("(define size 2)", visitor, true);
 
         // Assert
         var expected = Combination.builder()
-                .operand("define")
+                .operand(DEFINE)
                 .argument(Argument.fromName("size"))
                 .argument(Argument.fromNumber(2))
                 .build();
@@ -88,17 +93,17 @@ class ParserFacadeIT {
 
         // Assert
         var argument1 = Combination.builder()
-                .operand("*")
+                .operand(MULTIPLY)
                 .argument(Argument.fromNumber(3))
                 .argument(Argument.fromNumber(5))
                 .build();
         var argument2 = Combination.builder()
-                .operand("-")
+                .operand(SUBTRACT)
                 .argument(Argument.fromNumber(10))
                 .argument(Argument.fromNumber(6))
                 .build();
         var expected = Combination.builder()
-                .operand("+")
+                .operand(ADD)
                 .argument(Argument.fromCombination(argument1))
                 .argument(Argument.fromCombination(argument2))
                 .build();
