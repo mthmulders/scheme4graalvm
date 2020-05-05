@@ -81,4 +81,27 @@ class ParserFacadeIT {
         assertThat(expressions).containsOnly(expected);
     }
 
+    @Test
+    void should_parse_nested_combinations() {
+        // Arrange & act
+        var expressions = parse("(+ (* 3 5) (- 10 6))");
+
+        // Assert
+        var argument1 = Combination.builder()
+                .operand("*")
+                .argument(Argument.fromNumber(3))
+                .argument(Argument.fromNumber(5))
+                .build();
+        var argument2 = Combination.builder()
+                .operand("-")
+                .argument(Argument.fromNumber(10))
+                .argument(Argument.fromNumber(6))
+                .build();
+        var expected = Combination.builder()
+                .operand("+")
+                .argument(Argument.fromCombination(argument1))
+                .argument(Argument.fromCombination(argument2))
+                .build();
+        assertThat(expressions).containsOnly(expected);
+    }
 }

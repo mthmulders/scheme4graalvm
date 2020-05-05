@@ -6,7 +6,6 @@ import it.mulders.scheme.parser.generated.SchemeBaseVisitor;
 import it.mulders.scheme.parser.generated.SchemeParser;
 import it.mulders.scheme.parser.generated.SchemeVisitor;
 import lombok.AllArgsConstructor;
-import org.antlr.v4.runtime.tree.TerminalNode;
 
 /**
  * Visits a "combination", e.g.<code>(+ 2.7 10)</code> or <code>(* 5 99)</code>.
@@ -21,9 +20,10 @@ public class CombinationVisitor extends SchemeBaseVisitor<Combination.Combinatio
     }
 
     @Override
-    public Combination.CombinationBuilder visitArgument(SchemeParser.ArgumentContext ctx) {
-        var argument = new ArgumentVisitor().visit(ctx);
-        return builder.argument(argument);
+    public Combination.CombinationBuilder visitArguments(final SchemeParser.ArgumentsContext ctx) {
+        final var arguments = new ArgumentsVisitor().visit(ctx);
+        builder.arguments(arguments);
+        return builder;
     }
 
     @Override
