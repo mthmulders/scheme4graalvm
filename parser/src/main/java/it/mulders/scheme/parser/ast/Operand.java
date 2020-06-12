@@ -2,10 +2,12 @@ package it.mulders.scheme.parser.ast;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.Arrays;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Getter
 public enum Operand {
     MULTIPLY("*"),
     DIVIDE("/"),
@@ -16,8 +18,7 @@ public enum Operand {
     LESS_THAN_EQUAL("<="),
     GREATER_THAN_EQUAL(">="),
     EQUALS("="),
-    NOT_EQUALS("!="),
-    DEFINE("define");
+    NOT_EQUALS("!=");
 
     private final String symbol;
 
@@ -25,6 +26,6 @@ public enum Operand {
         return Arrays.stream(Operand.values())
                 .filter(o -> o.symbol.equals(input))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException("Illegal operand " + input));
     }
 }

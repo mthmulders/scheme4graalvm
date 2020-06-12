@@ -20,6 +20,6 @@ public class Combination implements SchemeExpression {
 
     public String toString() {
         var args = arguments.stream().map(Argument::toString).collect(joining(" "));
-        return String.format("(%s %s)", operand, args);
+        return String.format("(%s %s)", operand.getSymbol(), args);
     }
 }
