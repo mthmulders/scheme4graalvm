@@ -29,7 +29,8 @@ fragment DIGIT: [0-9];
 INTEGER_NUMBER: DIGIT+;
 REAL_NUMBER: DIGIT+ '.' DIGIT+;
 NUMBER: INTEGER_NUMBER | REAL_NUMBER;
-NAME: ([A-Za-z] | '?')+;
+DEFINE: 'define';
+NAME: ([A-Za-z])+;
 
 SYMBOL:
     '*' | '/' | '+' | '-' |
@@ -49,12 +50,12 @@ arguments: (WHITESPACE argument)+;
 
 compoundProcedure:
     BRACKET_OPEN
-        name
-        (WHITESPACE arguments)?
+        DEFINE
+        WHITESPACE+
+        BRACKET_OPEN name arguments? BRACKET_CLOSE
+        WHITESPACE
+        (primitiveExpression | combination)*
     BRACKET_CLOSE
-    WHITESPACE
-    expression
-    (WHITESPACE expression)*
 ;
 name: NAME;
 number: INTEGER_NUMBER | REAL_NUMBER;
@@ -63,8 +64,7 @@ operand: SYMBOL | NAME;
 
 combination: BRACKET_OPEN operand arguments BRACKET_CLOSE;
 primitiveExpression: number;
-expression: primitiveExpression | combination;
 
-expressions: expression*;
+//expressions: (compoundProcedure | primitiveExpression | combination)*;
 
-program: expressions EOF;
+program: (compoundProcedure | primitiveExpression | combination)* EOF;
