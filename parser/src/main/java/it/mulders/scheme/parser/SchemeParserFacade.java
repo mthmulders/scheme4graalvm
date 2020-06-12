@@ -21,7 +21,7 @@ public class SchemeParserFacade {
             parser.addErrorListener(errorListener);
         }
 
-        var context = parser.expressions();
+        var context = parser.program();
         return visitor.visit(context);
     }
 
