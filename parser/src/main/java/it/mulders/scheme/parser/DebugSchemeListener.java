@@ -25,14 +25,14 @@ class DebugSchemeListener implements SchemeListener {
 
     @Override
     public void enterArguments(final SchemeParser.ArgumentsContext ctx) {
-        log.debug("{}enterArgumentList {}", indent(), ctx.getText());
+        log.debug("{}enterArguments {}", indent(), ctx.getText());
         indentCount++;
     }
 
     @Override
     public void exitArguments(final SchemeParser.ArgumentsContext ctx) {
         indentCount--;
-        log.debug("{}exitArgumentList {}", indent(), ctx.getText());
+        log.debug("{}exitArguments {}", indent(), ctx.getText());
     }
 
     @Override
@@ -96,18 +96,6 @@ class DebugSchemeListener implements SchemeListener {
     }
 
     @Override
-    public void enterExpression(final SchemeParser.ExpressionContext ctx) {
-        log.debug("{}enterExpression {}", indent(), ctx.getText());
-        indentCount++;
-    }
-
-    @Override
-    public void exitExpression(final SchemeParser.ExpressionContext ctx) {
-        indentCount--;
-        log.debug("{}exitExpression {}", indent(), ctx.getText());
-    }
-
-    @Override
     public void enterPrimitiveExpression(final SchemeParser.PrimitiveExpressionContext ctx) {
         log.debug("{}enterPrimitiveExpression {}", indent(), ctx.getText());
         indentCount++;
@@ -129,18 +117,6 @@ class DebugSchemeListener implements SchemeListener {
     public void exitCombination(final SchemeParser.CombinationContext ctx) {
         indentCount--;
         log.debug("{}exitCompoundExpression {}", indent(), ctx.getText());
-    }
-
-    @Override
-    public void enterExpressions(final SchemeParser.ExpressionsContext ctx) {
-        log.debug("{}enterExpressions {}", indent(), ctx.getText());
-        indentCount++;
-    }
-
-    @Override
-    public void exitExpressions(final SchemeParser.ExpressionsContext ctx) {
-        indentCount--;
-        log.debug("{}exitExpressions {}", indent(), ctx.getText());
     }
 
     @Override

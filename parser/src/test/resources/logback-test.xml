@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+    <appender name="noop" class="ch.qos.logback.core.helpers.NOPAppender" />
+
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%date  %-5level  %50.50logger -- %msg%n</pattern>
+            <pattern>[%-5level] %50.50logger  %msg%n</pattern>
         </encoder>
     </appender>
 
-    <logger name="it.mulders.scheme.parser" level="debug"/>
+    <logger name="it.mulders.scheme.parser" level="trace"/>
 
     <root level="info">
-        <appender-ref ref="stdout"/>
+        <appender-ref ref="noop"/>
     </root>
 </configuration>
