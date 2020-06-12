@@ -1,8 +1,8 @@
 # Scheme4GraalVM
 [![CircleCI](https://circleci.com/gh/mthmulders/brainfuck-jvm.svg?style=svg)](https://circleci.com/gh/mthmulders/scheme4graalvm)
-[![SonarCloud quality gate](https://sonarcloud.io/api/project_badges/measure?project=mthmulders_brainfuck-jvm&metric=alert_status)](https://sonarcloud.io/dashboard?id=mthmulders_scheme4graalvm-jvm)
-[![SonarCloud vulnerability count](https://sonarcloud.io/api/project_badges/measure?project=mthmulders_brainfuck-jvm&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=mthmulders_scheme4graalvm-jvm)
-[![SonarCloud technical debt](https://sonarcloud.io/api/project_badges/measure?project=mthmulders_brainfuck-jvm&metric=sqale_index)](https://sonarcloud.io/dashboard?id=mthmulders_scheme4graalvm-jvm)
+[![SonarCloud quality gate](https://sonarcloud.io/api/project_badges/measure?project=mthmulders_scheme4graalvm&metric=alert_status)](https://sonarcloud.io/dashboard?id=mthmulders_scheme4graalvm)
+[![SonarCloud vulnerability count](https://sonarcloud.io/api/project_badges/measure?project=mthmulders_scheme4graalvm&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=mthmulders_scheme4graalvm)
+[![SonarCloud technical debt](https://sonarcloud.io/api/project_badges/measure?project=mthmulders_scheme4graalvm&metric=sqale_index)](https://sonarcloud.io/dashboard?id=mthmulders_scheme4graalvm)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=mthmulders/scheme4graalvm)](https://dependabot.com)
 
 This project implements [Scheme](https://en.wikipedia.org/wiki/Scheme_(programming_language)) on the JVM, using [GraalVM](https://www.graalvm.org/).
