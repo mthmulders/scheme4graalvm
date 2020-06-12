@@ -18,16 +18,17 @@ public class NumberVisitor extends SchemeBaseVisitor<Number> implements SchemeVi
 
     @Override
     public Number visitNumber(SchemeParser.NumberContext ctx) {
+        log.trace("visitNumber( {} )", ctx.getText());
         var value = ctx.getText();
 
         for (Function<String, Number> parser : PARSERS) {
             try {
                 return parser.apply(value);
             } catch (NumberFormatException ignored) {
+                log.warn("Value {} is not a number", value);
             }
         }
 
-        log.debug("Value {} is not a number", value);
         return null;
     }
 }

@@ -13,13 +13,13 @@ import static java.util.stream.Collectors.joining;
 @EqualsAndHashCode
 @Getter
 public class Combination implements SchemeExpression {
-    private final String operand;
+    private final Operand operand;
 
     @Singular
     private final List<Argument> arguments;
 
     public String toString() {
         var args = arguments.stream().map(Argument::toString).collect(joining(" "));
-        return String.format("(%s %s)", operand, args);
+        return String.format("(%s %s)", operand.getSymbol(), args);
     }
 }
