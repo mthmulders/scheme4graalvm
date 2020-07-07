@@ -134,6 +134,7 @@
                     <configuration>
                         <argLine>@{argLine} -Dgraalvm.locatorDisabled=true</argLine>
                         <forkCount>0</forkCount>
+                        <useSystemClassLoader>false</useSystemClassLoader>
                     </configuration>
                 </plugin>
 
@@ -144,6 +145,7 @@
                     <configuration>
                         <argLine>@{argLine} -Dgraalvm.locatorDisabled=true</argLine>
                         <forkCount>0</forkCount>
+                        <useSystemClassLoader>false</useSystemClassLoader>
                     </configuration>
                     <executions>
                         <execution>
