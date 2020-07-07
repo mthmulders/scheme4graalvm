@@ -29,6 +29,7 @@
 
     <modules>
         <module>parser</module>
+        <module>language</module>
     </modules>
 
     <dependencyManagement>
