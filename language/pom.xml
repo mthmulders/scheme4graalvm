@@ -25,14 +25,6 @@
             <artifactId>truffle-api</artifactId>
         </dependency>
 
-        <!-- generates META-INF/truffle/language -->
-        <dependency>
-            <groupId>org.graalvm.truffle</groupId>
-            <artifactId>truffle-dsl-processor</artifactId>
-            <version>${graal.sdk.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
