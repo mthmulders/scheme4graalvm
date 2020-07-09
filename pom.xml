@@ -160,7 +160,7 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.22.2</version>
                     <configuration>
-                        <argLine>@{argLine} -Dgraalvm.locatorDisabled=true</argLine>
+                        <argLine>@{argLine}</argLine>
                     </configuration>
                 </plugin>
 
@@ -169,7 +169,7 @@
                     <artifactId>maven-failsafe-plugin</artifactId>
                     <version>2.22.2</version>
                     <configuration>
-                        <argLine>@{argLine} -Dgraalvm.locatorDisabled=true</argLine>
+                        <argLine>@{argLine}</argLine>
                         <includes>
                             <include>*IT</include>
                         </includes>
