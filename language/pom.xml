@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>it.mulders.scheme4graalvm</groupId>
+        <artifactId>scheme4graalvm-parent</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>scheme-language</artifactId>
+    <version>0.1-SNAPSHOT</version>
+
+    <name>Scheme 4 GraalVM :: Language</name>
+
+    <properties>
+        <libs.dir>${project.build.directory}/jars</libs.dir>
+        <argLine>
+            --add-opens it.mulders.scheme4graalvm.parser/it.mulders.scheme.parser.visitors=ALL-UNNAMED
+            --add-opens it.mulders.scheme4graalvm.parser/it.mulders.scheme.parser.ast=ALL-UNNAMED
+            --add-opens it.mulders.scheme4graalvm.language/it.mulders.scheme.language=ALL-UNNAMED
+        </argLine>
+        <!--
+            See https://www.graalvm.org/docs/graalvm-as-a-platform/implement-language/#disable-class-path-separation
+        -->
+        <classpathSeparationArgs>
+            -Dgraalvm.locatorDisabled=true
+            --upgrade-module-path=${libs.dir}/truffle-api.jar
+            --add-modules it.mulders.scheme4graalvm.parser
+        </classpathSeparationArgs>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.graalvm.truffle</groupId>
+            <artifactId>truffle-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>it.mulders.scheme4graalvm</groupId>
+            <artifactId>scheme-parser</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <argLine>@{argLine} ${classpathSeparationArgs}</argLine>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>@{argLine} ${classpathSeparationArgs}</argLine>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-truffle-api</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.graalvm.truffle</groupId>
+                                    <artifactId>truffle-api</artifactId>
+                                    <version>${graal.sdk.version}</version>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>truffle-api.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${libs.dir}</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

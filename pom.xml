@@ -15,9 +15,8 @@
         <assertj.version>3.16.1</assertj.version>
         <graal.sdk.version>20.1.0</graal.sdk.version>
         <junit.version>5.6.2</junit.version>
+        <lombok.version>edge-SNAPSHOT</lombok.version>
         <mockito.version>3.3.3</mockito.version>
-
-        <argLine></argLine>
     </properties>
 
     <name>Scheme 4 GraalVM</name>
@@ -29,10 +28,23 @@
 
     <modules>
         <module>parser</module>
+        <module>language</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
+            <!--
+                project dependencies
+            -->
+            <dependency>
+                <groupId>it.mulders.scheme4graalvm</groupId>
+                <artifactId>scheme-parser</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!--
+                other dependencies
+            -->
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
@@ -45,6 +57,7 @@
                 <groupId>org.graalvm.sdk</groupId>
                 <artifactId>graal-sdk</artifactId>
                 <version>${graal.sdk.version}</version>
+                <scope>provided</scope>
             </dependency>
 
             <dependency>
@@ -66,7 +79,7 @@
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.18.12</version>
+                <version>${lombok.version}</version>
                 <scope>provided</scope>
             </dependency>
 
@@ -93,6 +106,20 @@
         </license>
     </licenses>
 
+    <repositories>
+        <repository>
+            <id>projectlombok.org</id>
+            <url>https://projectlombok.org/edge-releases</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <build>
         <plugins>
             <plugin>
@@ -108,6 +135,20 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.8.1</version>
+                    <configuration>
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${lombok.version}</version>
+                            </path>
+                            <path>
+                                <groupId>org.graalvm.truffle</groupId>
+                                <artifactId>truffle-dsl-processor</artifactId>
+                                <version>${graal.sdk.version}</version>
+                            </path>
+                        </annotationProcessorPaths>
+                    </configuration>
                 </plugin>
 
                 <plugin>
@@ -119,18 +160,21 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.22.2</version>
+                    <version>3.0.0-M5</version>
                     <configuration>
-                        <argLine>@{argLine} -Dgraalvm.locatorDisabled=true</argLine>
+                        <argLine>@{argLine}</argLine>
                     </configuration>
                 </plugin>
 
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>2.22.2</version>
+                    <version>3.0.0-M5</version>
                     <configuration>
-                        <argLine>@{argLine} -Dgraalvm.locatorDisabled=true</argLine>
+                        <argLine>@{argLine}</argLine>
+                        <includes>
+                            <include>*IT</include>
+                        </includes>
                     </configuration>
                     <executions>
                         <execution>
