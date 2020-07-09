@@ -16,6 +16,11 @@
 
     <properties>
         <libs.dir>${project.build.directory}/jars</libs.dir>
+        <argLine>
+            --add-opens it.mulders.scheme4graalvm.parser/it.mulders.scheme.parser.visitors=ALL-UNNAMED
+            --add-opens it.mulders.scheme4graalvm.parser/it.mulders.scheme.parser.ast=ALL-UNNAMED
+            --add-opens it.mulders.scheme4graalvm.language/it.mulders.scheme.language=ALL-UNNAMED
+        </argLine>
         <!--
             See https://www.graalvm.org/docs/graalvm-as-a-platform/implement-language/#disable-class-path-separation
         -->

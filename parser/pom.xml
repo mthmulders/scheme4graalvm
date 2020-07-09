@@ -18,6 +18,11 @@
         <antlr4.version>4.8-1</antlr4.version>
         <antlr4.visitor>true</antlr4.visitor>
         <antlr4.listener>true</antlr4.listener>
+        <argLine>
+            --add-opens it.mulders.scheme4graalvm.parser/it.mulders.scheme.parser=ALL-UNNAMED
+            --add-opens it.mulders.scheme4graalvm.parser/it.mulders.scheme.parser.ast=ALL-UNNAMED
+            --add-opens it.mulders.scheme4graalvm.parser/it.mulders.scheme.parser.visitors=ALL-UNNAMED
+        </argLine>
     </properties>
 
     <dependencies>

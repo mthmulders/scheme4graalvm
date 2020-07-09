@@ -17,12 +17,6 @@
         <junit.version>5.6.2</junit.version>
         <lombok.version>edge-SNAPSHOT</lombok.version>
         <mockito.version>3.3.3</mockito.version>
-
-        <argLine>
-            --add-opens it.mulders.scheme4graalvm.parser/it.mulders.scheme.parser.visitors=ALL-UNNAMED
-            --add-opens it.mulders.scheme4graalvm.parser/it.mulders.scheme.parser.ast=ALL-UNNAMED
-            --add-opens it.mulders.scheme4graalvm.language/it.mulders.scheme.language=ALL-UNNAMED
-        </argLine>
     </properties>
 
     <name>Scheme 4 GraalVM</name>
