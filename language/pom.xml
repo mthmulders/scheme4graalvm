@@ -16,13 +16,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.graalvm.sdk</groupId>
-            <artifactId>graal-sdk</artifactId>
+            <groupId>org.graalvm.truffle</groupId>
+            <artifactId>truffle-api</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.graalvm.truffle</groupId>
-            <artifactId>truffle-api</artifactId>
+            <groupId>it.mulders.scheme4graalvm</groupId>
+            <artifactId>scheme-parser</artifactId>
         </dependency>
 
         <dependency>
