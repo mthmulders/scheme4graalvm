@@ -15,8 +15,8 @@ import java.util.Collection;
  * Implementation of the {@link SchemeParser} interface based on ANTLR (v4).
  */
 public class AntlrSchemeParser implements SchemeParser {
-    public <T> T parse(final String input, final SchemeVisitor<T> visitor, final ANTLRErrorListener errorListener, final boolean debug) {
-        var lexer = new SchemeLexer(CharStreams.fromString(input));
+    public <T> T parse(final CharSequence input, final SchemeVisitor<T> visitor, final ANTLRErrorListener errorListener, final boolean debug) {
+        var lexer = new SchemeLexer(CharStreams.fromString(input.toString()));
         var tokens = new CommonTokenStream(lexer);
 
         var parser = new it.mulders.scheme.parser.generated.SchemeParser(tokens);
@@ -32,11 +32,11 @@ public class AntlrSchemeParser implements SchemeParser {
         return visitor.visit(context);
     }
 
-    public <T> T parse(final String input, final SchemeVisitor<T> visitor, final boolean debug) {
+    public <T> T parse(final CharSequence input, final SchemeVisitor<T> visitor, final boolean debug) {
         return parse(input, visitor, null, debug);
     }
 
-    public <T> T parse(final String input, final SchemeVisitor<T> visitor) {
+    public <T> T parse(final CharSequence input, final SchemeVisitor<T> visitor) {
         return parse(input, visitor, null, false);
     }
 
@@ -44,7 +44,7 @@ public class AntlrSchemeParser implements SchemeParser {
      * {@inheritDoc}
      */
     @Override
-    public Collection<SchemeExpression> parse(final String input) {
+    public Collection<SchemeExpression> parse(final CharSequence input) {
         return parse(input, new SchemeExpressionsVisitor());
     }
 
