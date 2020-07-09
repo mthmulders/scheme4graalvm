@@ -110,6 +110,13 @@
         <repository>
             <id>projectlombok.org</id>
             <url>https://projectlombok.org/edge-releases</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
         </repository>
     </repositories>
 
