@@ -1,4 +1,4 @@
-package it.mulders.scheme.parser;
+package it.mulders.scheme.parser.impl;
 
 import it.mulders.scheme.parser.generated.SchemeListener;
 import it.mulders.scheme.parser.generated.SchemeParser;
@@ -143,10 +143,12 @@ class DebugSchemeListener implements SchemeListener {
 
     @Override
     public void enterEveryRule(final ParserRuleContext ctx) {
+        // Intentionally left empty
     }
 
     @Override
     public void exitEveryRule(final ParserRuleContext ctx) {
+        // Intentionally left empty
     }
     
     private String indent() {

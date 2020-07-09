@@ -7,6 +7,7 @@ import it.mulders.scheme.parser.ast.Combination;
 import it.mulders.scheme.parser.ast.CompoundProcedure;
 import it.mulders.scheme.parser.ast.PrimitiveExpression;
 import it.mulders.scheme.parser.ast.SchemeExpression;
+import it.mulders.scheme.parser.impl.AntlrSchemeParser;
 import it.mulders.scheme.parser.visitors.SchemeExpressionsVisitor;
 import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ParserFacadeIT {
     private static final boolean DEBUG = true;
-    private final SchemeParserFacade sut = new SchemeParserFacade();
+    private final AntlrSchemeParser sut = new AntlrSchemeParser();
 
     private final SchemeExpressionsVisitor visitor = new SchemeExpressionsVisitor();
     private final ANTLRErrorListener errorListener = new BailoutErrorListener();
