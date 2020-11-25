@@ -13,7 +13,7 @@
         <maven.compiler.release>11</maven.compiler.release>
 
         <assertj.version>3.18.1</assertj.version>
-        <graal.sdk.version>20.2.0</graal.sdk.version>
+        <graal.sdk.version>20.3.0</graal.sdk.version>
         <junit.version>5.7.0</junit.version>
         <mockito.version>3.6.0</mockito.version>
 
