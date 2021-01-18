@@ -15,7 +15,7 @@
         <assertj.version>3.18.1</assertj.version>
         <graal.sdk.version>20.3.0</graal.sdk.version>
         <junit.version>5.7.0</junit.version>
-        <mockito.version>3.7.0</mockito.version>
+        <mockito.version>3.7.7</mockito.version>
 
         <argLine></argLine>
     </properties>
