@@ -3,7 +3,7 @@ jobs:
   build:
 
     docker:
-      - image: ghcr.io/graalvm/graalvm-ce:java11-21.0.0.2
+      - image: ghcr.io/graalvm/graalvm-ce:java11-21.1.0
 
     steps:
       - checkout
